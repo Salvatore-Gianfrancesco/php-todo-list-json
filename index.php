@@ -16,15 +16,25 @@ include __DIR__ . '/server.php';
     <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT' crossorigin='anonymous'>
 </head>
 
-<body>
-    <div id="app">
-        <h1>Todo List</h1>
+<body class="bg-dark text-dark">
+    <div id="app" class="d-flex justify-content-center">
+        <div class="w-50 d-flexflex-column py-4">
+            <h1 class="text-light text-center pb-3">Todo List</h1>
 
-        <ul>
-            <?php foreach ($tasks as $task) { ?>
-                <li><?= $task ?></li>
-            <?php } ?>
-        </ul>
+            <ul class="bg-light rounded-2 p-0">
+                <?php foreach ($tasks as $task) { ?>
+                    <li class="py-2 px-3 rounded-2"><?= $task ?></li>
+                <?php } ?>
+            </ul>
+
+            <form action="index.php" method="GET">
+                <div class="input-group">
+                    <input type="text" id="new_task" name="new_task" class="form-control" placeholder="Add new task...">
+                    <button type="submit" class="btn btn-outline-secondary text-light">Confirm</button>
+                </div>
+            </form>
+        </div>
+    </div>
     </div>
 
     <!-- Bootstrap JS -->
