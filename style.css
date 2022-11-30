@@ -13,3 +13,11 @@ li:hover {
     background-color: #c2c2c2;
     transition: 0.3s;
 }
+
+i {
+    visibility: hidden;
+}
+
+li:hover i {
+    visibility: visible;
+}
