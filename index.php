@@ -1,9 +1,3 @@
-<?php
-
-include __DIR__ . '/server.php';
-
-?>
-
 <!DOCTYPE html>
 <html lang='en'>
 
@@ -23,26 +17,24 @@ include __DIR__ . '/server.php';
             <h1 class="text-light text-center pb-3">Todo List</h1>
 
             <ul class="bg-light rounded-2 p-0">
-                <?php foreach ($tasks as $task) { ?>
-                    <li class="d-flex justify-content-between align-items-center py-2 px-3 rounded-2">
-                        <div class="<?php $task['marked'] ? 'text-decoration-line-through' : '' ?>"><?= $task['task']; ?></div>
-                        <i class="fa-solid fa-trash"></i>
-                    </li>
-                <?php } ?>
+                <li class="d-flex justify-content-between align-items-center py-2 px-3 rounded-2" v-for="(task, index) in tasks">
+                    <div :class="task.marked ? 'text-decoration-line-through' : ''" @click.preventDefault()="markTask(index)">{{task.task}}</div>
+                    <i class="fa-solid fa-trash" @click.preventDefault()="deleteTask(index)"></i>
+                </li>
             </ul>
 
-            <form action="index.php" method="GET">
-                <div class="input-group">
-                    <input type="text" id="new_task" name="new_task" class="form-control" placeholder="Add new task...">
-                    <button type="submit" class="btn btn-outline-secondary text-light">Confirm</button>
-                </div>
-            </form>
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Add new task..." v-model="newTask" @keydown.enter="saveTask">
+                <button type="btn" class="btn btn-outline-secondary text-light" @click.preventDefault()="saveTask">Confirm</button>
+            </div>
         </div>
-    </div>
     </div>
 
     <!-- Bootstrap JS -->
     <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js' integrity='sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8' crossorigin='anonymous'></script>
+    <!-- Axios script -->
+    <script src='https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js'></script>
+    <!-- VueJs script -->
     <script src='https://unpkg.com/vue@3/dist/vue.global.js'></script>
     <script src='./app.js'></script>
 </body>
